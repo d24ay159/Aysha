@@ -25,6 +25,7 @@
             text-decoration: none;
             transition: background-color 0.3s;
             position: relative;
+            cursor: pointer;
         }
         .button:hover {
             background-color: #F5F5F5;
@@ -40,9 +41,6 @@
             border-radius: 10px;
             z-index: 1;
         }
-        .button:hover .dropdown {
-            display: block;
-        }
         .dropdown a {
             font-size: 20px;
             color: black;
@@ -54,34 +52,65 @@
         .dropdown a:hover {
             background-color: #F5F5F5;
         }
+        .arrow {
+            font-size: 20px;
+            position: absolute;
+            top: 50%;
+            right: -20px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
     </style>
 </head>
 <body>
-   <div class="button"> ✨ تعاونية
+    <div class="button" onclick="toggleDropdown(this)"> ✨ تعاونية
         <div class="dropdown">
             <a href="https://scratch.mit.edu/projects/1032460931">كيف تتمدد الأجسام؟</a>
             <a href="https://scratch.mit.edu/projects/1010238483">لعبة صنع بيتزا</a>
             <a href="https://scratch.mit.edu/projects/989063320">حور و رمضان</a>
         </div>
+        <span class="arrow">▼</span>
     </div>
-  <div class="button"> 📖 تعليمية
+    <div class="button" onclick="toggleDropdown(this)"> 📖 تعليمية
         <div class="dropdown">
             <a href="https://scratch.mit.edu/projects/1031407408">حروف الهجاء (للأطفال)</a>
             <a href="https://scratch.mit.edu/projects/989027332">درس محرك الثورة الخضراء</a>
         </div>
+        <span class="arrow">▼</span>
     </div>
-     <div class="button"> 📄 أسئلة
+    <div class="button" onclick="toggleDropdown(this)"> 📄 أسئلة
         <div class="dropdown">
             <a href="https://scratch.mit.edu/projects/985308326">أسئة عن درس الجهاز العصبي</a>
             <a href="https://scratch.mit.edu/projects/989025899">أسئلة عن اللبنات البرمجية في سكراتش</a>
         </div>
+        <span class="arrow">▼</span>
     </div>
-    <div class="button"> 🎮 ألعاب
+    <div class="button" onclick="toggleDropdown(this)"> 🎮 ألعاب
         <div class="dropdown">
             <a href="https://scratch.mit.edu/projects/984066862">لعبة موقف السيارت</a>
             <a href="https://scratch.mit.edu/projects/997600211">لعبة الصبار</a>
-
         </div>
+        <span class="arrow">▼</span>
     </div>
+
+    <script>
+        function toggleDropdown(button) {
+            const dropdown = button.querySelector('.dropdown');
+            const arrow = button.querySelector('.arrow');
+            const isVisible = dropdown.style.display === 'block';
+
+            // Hide all dropdowns
+            document.querySelectorAll('.dropdown').forEach(dd => dd.style.display = 'none');
+            document.querySelectorAll('.arrow').forEach(ar => ar.style.transform = 'translateY(-50%)');
+
+            // Toggle the clicked dropdown
+            if (!isVisible) {
+                dropdown.style.display = 'block';
+                arrow.style.transform = 'translateY(-50%) rotate(180deg)';
+            }
+        }
+    </script>
 </body>
 </html>
+												
